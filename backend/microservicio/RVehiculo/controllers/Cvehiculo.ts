@@ -49,7 +49,7 @@ const editarVehiculo= async(req: Request,res: Response)=>{
 
 const EliminarVehiculo = async (req: Request, res: Response)=>{
         const {id} = req.params
-        const Borrarvehiculo = await Vehiculo.findByIdAndDelete(id);
+        const Borrarvehiculo = await Vehiculo.findByIdAndUpdate(id,{eliminado:true},{new:true});
         res.json(Borrarvehiculo);
     }
 
