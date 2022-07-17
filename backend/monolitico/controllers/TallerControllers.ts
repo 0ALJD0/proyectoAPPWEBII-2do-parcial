@@ -18,10 +18,7 @@ const crearTaller = async (req:Request,res:Response)=>{
 const verTalleres=async(req: Request,res:Response)=>{
     //hago la consulta y muestro los talleres
     const talleres = await Taller.find().populate('servicios','servicio');
-    res.json({
-        Microservicio: "verTalleres",
-        data: talleres
-    });
+    res.json(talleres);
 }
 const editarTaller= async(req:Request,res:Response)=>{
     const {id} = req.params;

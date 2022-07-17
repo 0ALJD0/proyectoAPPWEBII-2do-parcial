@@ -6,12 +6,15 @@ const CrearVehiculo = async (req: Request,res: Response)=>{
 
     try {
         const {...dato} = req.body;
-        const existeplaca = await Vehiculo.find({placa:dato.placa});
-        if (existeplaca.length > 0) {
+        const existeplaca = await Vehiculo.findOne({placa:dato.placa});
+        if (!existeplaca ){
             const vehiculo = new Vehiculo(dato);
             const nuevovehiculo= await vehiculo.save();
+            
             return res.status(201).json(nuevovehiculo); 
+            
         }
+        
         return res.status(404).json({message: "Placa YA Existente"});
     } catch (error) {
         
@@ -30,7 +33,7 @@ const Vervehiculos = async (req: Request, res: Response) => {
     const {...dato}=req.body;
     const [total, vehiculosT] = await Promise.all([
         Vehiculo.countDocuments(),
-        Vehiculo.find({idcliente:dato.idcliente}),
+        Vehiculo.find({idcliente:dato.idcliente,eliminado:false}),
     ])
     res.status(200).json({
         total:
@@ -41,10 +44,15 @@ const Vervehiculos = async (req: Request, res: Response) => {
 }
 
 const editarVehiculo= async(req: Request,res: Response)=>{
-    const {id} = req.params;
-    const {...dato}=req.body;
-    const vehiculoM= await Vehiculo.findByIdAndUpdate(id,dato,{new:true})
-    res.json(vehiculoM);
+    try {
+        const {id} = req.params;
+        const {...dato}=req.body;
+        const vehiculoM= await Vehiculo.findByIdAndUpdate(id,dato,{new:true})
+        res.json(vehiculoM);
+    } catch (error) {
+        console.log(error) ;
+        res.status(400).json({message: error});
+    }
 }
 
 const EliminarVehiculo = async (req: Request, res: Response)=>{

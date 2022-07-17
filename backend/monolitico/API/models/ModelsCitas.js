@@ -11,9 +11,8 @@ const CitasSchema = new mongoose_1.Schema({
         type: mongoose_1.Types.ObjectId,
         ref: "Taller"
     },
-    idvehiculo: {
-        type: mongoose_1.Types.ObjectId,
-        ref: "Vehiculo"
+    vehiculo: {
+        type: Object
     },
     trabajo: [{
             type: String,
@@ -31,6 +30,7 @@ const CitasSchema = new mongoose_1.Schema({
     eliminado: {
         type: Boolean,
         default: false,
+        required: true,
     }
 });
 const Citas = (0, mongoose_1.model)('Cita', CitasSchema);

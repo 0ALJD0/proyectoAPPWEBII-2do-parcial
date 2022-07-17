@@ -14,7 +14,7 @@ router.post('/nvehiculo',check('placa', 'Placa obligatoria'),validarCampos, Crea
 router.get('/Mvehiculo', Vervehiculos);
 router.get('/Uvehiculo/:id', check('id', 'El id no existe',).isMongoId(), Vervehiculo)
 router.put('/EVehiculo/:id', check('id', 'La placa debe estar en la base de datos',).isMongoId(),editarVehiculo);
-router.delete('/EliVehiculo/:id', check('id', 'La placa debe estar en la base de datos',).isMongoId() ,EliminarVehiculo);
+router.put('/EliVehiculo/:id', check('id', 'La placa debe estar en la base de datos',).isMongoId() ,EliminarVehiculo);
 
 
 export{router}

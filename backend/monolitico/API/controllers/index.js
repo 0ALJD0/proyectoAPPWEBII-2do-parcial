@@ -1,9 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.verTalleres = exports.crearCliente = exports.editarTaller = exports.elminaCita = exports.crearTaller = exports.crearCita = void 0;
+exports.verTalleres = exports.crearCliente = exports.editarTaller = exports.elminaCita = exports.crearTaller = exports.verCitasRepre = exports.verCitasCliente = exports.crearCita = void 0;
 const CitaControllers_1 = require("./CitaControllers");
 Object.defineProperty(exports, "crearCita", { enumerable: true, get: function () { return CitaControllers_1.crearCita; } });
 Object.defineProperty(exports, "elminaCita", { enumerable: true, get: function () { return CitaControllers_1.elminaCita; } });
+Object.defineProperty(exports, "verCitasCliente", { enumerable: true, get: function () { return CitaControllers_1.verCitasCliente; } });
+Object.defineProperty(exports, "verCitasRepre", { enumerable: true, get: function () { return CitaControllers_1.verCitasRepre; } });
 const CrearCliente_1 = require("./CrearCliente");
 Object.defineProperty(exports, "crearCliente", { enumerable: true, get: function () { return CrearCliente_1.crearCliente; } });
 const TallerControllers_1 = require("./TallerControllers");

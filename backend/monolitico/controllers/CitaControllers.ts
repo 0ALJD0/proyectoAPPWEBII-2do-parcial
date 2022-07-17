@@ -10,19 +10,19 @@ const crearCita = async(req:Request,res:Response)=>{
 
 const verCitasCliente= async(req: Request, res: Response)=>{ 
     try {
-        const {...dato} = req.body;
-        const clienteExistente = await Usuario.find({ci:dato.ci});
+        const {id} = req.params;
+        const clienteExistente = await Usuario.find({_id:id});
         if(clienteExistente.length > 0){
             const citas = await Citas.find({idcliente:clienteExistente[0]._id,
                 estado: false, eliminado: false
             }).populate('idcliente','Nombre').populate('idtaller', 'NombreTaller')
-            .populate('idvehiculo', 'placa');
+            
 
             return res.json({
                 data: citas
             })
         } else {
-            return res.status(400).json({message: `No se encontro el cliente con ci: ${dato.ci}`}); 
+            return res.status(201).json({message: `No tiene citas activas`}); 
         }
     } catch (error) {
         console.log(error);
@@ -38,7 +38,7 @@ const verCitasRepre = async (req:Request,res:Response)=>{
             const citas = await Citas.find({idtaller:existeTaller[0]._id,
             estado:false,eliminado:false
             }).populate('idcliente','Nombre').populate('idtaller', 'NombreTaller')
-            .populate('idvehiculo', 'placa');
+            
             //console.log(citas);
             return res.json(citas);
     }

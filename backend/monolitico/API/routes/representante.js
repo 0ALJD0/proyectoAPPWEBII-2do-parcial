@@ -7,6 +7,6 @@ const validar_1 = require("../middleware/validar");
 const controllers_1 = require("../controllers");
 const router = (0, express_1.Router)();
 exports.router = router;
-router.get('/cita');
+router.get('/cita', controllers_1.verCitasRepre);
 router.post('/ntaller', [(0, express_validator_1.check)('NombreTaller', 'El nombre es obligatorio').not().isEmpty(), validar_1.validarCampos], controllers_1.crearTaller);
 router.put('/etaller/:id', controllers_1.editarTaller);

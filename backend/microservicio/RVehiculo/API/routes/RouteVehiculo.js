@@ -16,4 +16,4 @@ router.post('/nvehiculo', (0, express_validator_1.check)('placa', 'Placa obligat
 router.get('/Mvehiculo', Vervehiculos);
 router.get('/Uvehiculo/:id', (0, express_validator_1.check)('id', 'El id no existe').isMongoId(), Vervehiculo);
 router.put('/EVehiculo/:id', (0, express_validator_1.check)('id', 'La placa debe estar en la base de datos').isMongoId(), editarVehiculo);
-router.delete('/EliVehiculo/:id', (0, express_validator_1.check)('id', 'La placa debe estar en la base de datos').isMongoId(), EliminarVehiculo);
+router.put('/EliVehiculo/:id', (0, express_validator_1.check)('id', 'La placa debe estar en la base de datos').isMongoId(), EliminarVehiculo);

@@ -38,10 +38,7 @@ exports.crearTaller = crearTaller;
 const verTalleres = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     //hago la consulta y muestro los talleres
     const talleres = yield models_1.Taller.find().populate('servicios', 'servicio');
-    res.json({
-        Microservicio: "verTalleres",
-        data: talleres
-    });
+    res.json(talleres);
 });
 exports.verTalleres = verTalleres;
 const editarTaller = (req, res) => __awaiter(void 0, void 0, void 0, function* () {

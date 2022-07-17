@@ -25,9 +25,13 @@ const ModelsVehiculo_1 = require("../models/ModelsVehiculo");
 const CrearVehiculo = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const dato = __rest(req.body, []);
-        const vehiculo = new ModelsVehiculo_1.Vehiculo(dato);
-        const nuevovehiculo = yield vehiculo.save();
-        res.status(201).json(nuevovehiculo);
+        const existeplaca = yield ModelsVehiculo_1.Vehiculo.findOne({ placa: dato.placa });
+        if (!existeplaca) {
+            const vehiculo = new ModelsVehiculo_1.Vehiculo(dato);
+            const nuevovehiculo = yield vehiculo.save();
+            return res.status(201).json(nuevovehiculo);
+        }
+        return res.status(404).json({ message: "Placa YA Existente" });
     }
     catch (error) {
         console.log(error);
@@ -42,9 +46,10 @@ const Vervehiculo = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 });
 exports.Vervehiculo = Vervehiculo;
 const Vervehiculos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const dato = __rest(req.body, []);
     const [total, vehiculosT] = yield Promise.all([
         ModelsVehiculo_1.Vehiculo.countDocuments(),
-        ModelsVehiculo_1.Vehiculo.find(),
+        ModelsVehiculo_1.Vehiculo.find({ idcliente: dato.idcliente, eliminado: false }),
     ]);
     res.status(200).json({
         total: total,
@@ -53,15 +58,21 @@ const Vervehiculos = (req, res) => __awaiter(void 0, void 0, void 0, function* (
 });
 exports.Vervehiculos = Vervehiculos;
 const editarVehiculo = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id } = req.params;
-    const dato = __rest(req.body, []);
-    const vehiculoM = yield ModelsVehiculo_1.Vehiculo.findByIdAndUpdate(id, dato, { new: true });
-    res.json(vehiculoM);
+    try {
+        const { id } = req.params;
+        const dato = __rest(req.body, []);
+        const vehiculoM = yield ModelsVehiculo_1.Vehiculo.findByIdAndUpdate(id, dato, { new: true });
+        res.json(vehiculoM);
+    }
+    catch (error) {
+        console.log(error);
+        res.status(400).json({ message: error });
+    }
 });
 exports.editarVehiculo = editarVehiculo;
 const EliminarVehiculo = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const Borrarvehiculo = yield ModelsVehiculo_1.Vehiculo.findByIdAndDelete(id);
+    const Borrarvehiculo = yield ModelsVehiculo_1.Vehiculo.findByIdAndUpdate(id, { eliminado: true }, { new: true });
     res.json(Borrarvehiculo);
 });
 exports.EliminarVehiculo = EliminarVehiculo;

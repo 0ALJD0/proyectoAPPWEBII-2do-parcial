@@ -29,7 +29,9 @@ const CitasSchema: mongoose.Schema = new Schema<IModelsCitas>({
     },
     eliminado:{
         type:Boolean,
-        default:false,    
+        default:false,   
+        required:true,
+ 
     }
 
 });

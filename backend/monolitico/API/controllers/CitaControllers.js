@@ -20,7 +20,7 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.elminaCita = exports.crearCita = void 0;
+exports.verCitasRepre = exports.verCitasCliente = exports.elminaCita = exports.crearCita = void 0;
 const models_1 = require("../models");
 const crearCita = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const dato = __rest(req.body, []);
@@ -29,6 +29,40 @@ const crearCita = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.status(201).json(nuevacita);
 });
 exports.crearCita = crearCita;
+const verCitasCliente = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.params;
+        const clienteExistente = yield models_1.Usuario.find({ _id: id });
+        if (clienteExistente.length > 0) {
+            const citas = yield models_1.Citas.find({ idcliente: clienteExistente[0]._id,
+                estado: false, eliminado: false
+            }).populate('idcliente', 'Nombre').populate('idtaller', 'NombreTaller');
+            return res.json({
+                data: citas
+            });
+        }
+        else {
+            return res.status(201).json({ message: `No tiene citas activas` });
+        }
+    }
+    catch (error) {
+        console.log(error);
+    }
+});
+exports.verCitasCliente = verCitasCliente;
+const verCitasRepre = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const dato = __rest(req.body, []); //el nombre del taller
+    const existeTaller = yield models_1.Taller.find({ NombreTaller: dato.NombreTaller });
+    if (existeTaller.length > 0) {
+        const citas = yield models_1.Citas.find({ idtaller: existeTaller[0]._id,
+            estado: false, eliminado: false
+        }).populate('idcliente', 'Nombre').populate('idtaller', 'NombreTaller');
+        //console.log(citas);
+        return res.json(citas);
+    }
+    res.status(400).json({ message: `No se encontró el Taller con el nombre: ${dato.NombreTaller}` });
+});
+exports.verCitasRepre = verCitasRepre;
 const elminaCita = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     //retorna el json de la cita en la qie esta el usuario.

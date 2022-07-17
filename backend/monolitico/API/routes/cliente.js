@@ -6,7 +6,7 @@ const controllers_1 = require("../controllers");
 const router = (0, express_1.Router)();
 exports.router = router;
 router.get('/talleres', controllers_1.verTalleres);
-router.get('/vCita');
+router.get('/vCita/:id', controllers_1.verCitasCliente);
 router.put('/dcita/:id', controllers_1.elminaCita);
 router.post('/ncliente', controllers_1.crearCliente);
 router.post('/ncita', controllers_1.crearCita);

@@ -4,13 +4,10 @@ exports.Vehiculo = void 0;
 const mongoose_1 = require("mongoose");
 const VehiculoSchema = new mongoose_1.Schema({
     idcliente: {
-        type: mongoose_1.Types.ObjectId,
-        required: true,
-        ref: "Cliente"
+        type: mongoose_1.Types.ObjectId
     },
     placa: {
         type: String,
-        unique: true,
         required: true,
     },
     Marca: {
@@ -24,7 +21,8 @@ const VehiculoSchema = new mongoose_1.Schema({
     Modelo: {
         type: String,
         require: true
-    }
+    },
+    eliminado: { type: Boolean, default: false, required: true },
 });
 const Vehiculo = (0, mongoose_1.model)('Vehiculo', VehiculoSchema);
 exports.Vehiculo = Vehiculo;
