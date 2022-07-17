@@ -3,5 +3,7 @@ export interface IModelsVehiculo{
     placa: String,
     Marca: String,
     Color: String,
-    Modelo: String
+    Modelo: String,
+    eliminado: Boolean,
+
 }

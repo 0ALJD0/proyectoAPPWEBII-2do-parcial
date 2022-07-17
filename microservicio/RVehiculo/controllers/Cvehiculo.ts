@@ -6,9 +6,13 @@ const CrearVehiculo = async (req: Request,res: Response)=>{
 
     try {
         const {...dato} = req.body;
-        const vehiculo = new Vehiculo(dato);
-        const nuevovehiculo= await vehiculo.save();
-        res.status(201).json(nuevovehiculo); 
+        const existeplaca = await Vehiculo.find({placa:dato.placa});
+        if (existeplaca.length > 0) {
+            const vehiculo = new Vehiculo(dato);
+            const nuevovehiculo= await vehiculo.save();
+            return res.status(201).json(nuevovehiculo); 
+        }
+        return res.status(404).json({message: "Placa YA Existente"});
     } catch (error) {
         
         console.log(error);
@@ -23,9 +27,10 @@ const Vervehiculo = async (req: Request, res: Response)=>{
  }
  
 const Vervehiculos = async (req: Request, res: Response) => {
+    const {...dato}=req.body;
     const [total, vehiculosT] = await Promise.all([
         Vehiculo.countDocuments(),
-        Vehiculo.find(),
+        Vehiculo.find({idcliente:dato.idcliente}),
     ])
     res.status(200).json({
         total:

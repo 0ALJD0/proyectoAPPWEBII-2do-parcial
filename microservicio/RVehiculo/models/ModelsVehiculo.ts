@@ -5,13 +5,9 @@ import { IModelsVehiculo } from '../interfaces/IModelsVehiculo';
 
 const VehiculoSchema: mongoose.Schema = new Schema<IModelsVehiculo>({
     idcliente: {
-        type: Types.ObjectId,
-        required: true,
-        ref: "Cliente"
-    },
+        type: String},
     placa:{
         type: String,
-        unique: true,
         required:true,
         
     },
@@ -26,7 +22,8 @@ const VehiculoSchema: mongoose.Schema = new Schema<IModelsVehiculo>({
     Modelo:{
         type: String,
         require: true
-    }
+    },
+    eliminado: {   type: Boolean, default: false },
 })
 
 const Vehiculo: mongoose.Model<IModelsVehiculo> = model<IModelsVehiculo>('Vehiculo',VehiculoSchema);

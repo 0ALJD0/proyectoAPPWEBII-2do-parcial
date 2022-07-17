@@ -11,9 +11,8 @@ const CitasSchema: mongoose.Schema = new Schema<IModelsCitas>({
         type: Types.ObjectId,
         ref: "Taller"
     },
-    idvehiculo: {
-        type: Types.ObjectId,
-        ref: "Vehiculo"
+    vehiculo: {
+        type: Object
     },
     trabajo:[{
         type: String,
