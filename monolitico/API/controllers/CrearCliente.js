@@ -20,36 +20,24 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.verTalleres = exports.editarTaller = exports.crearTaller = void 0;
+exports.crearCliente = void 0;
 const models_1 = require("../models");
-const crearTaller = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const dato = __rest(req.body, []);
-    const tallerExiste = yield models_1.Taller.findOne({ NombreTaller: dato.NombreTaller });
-    if (tallerExiste) {
+const crearCliente = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const dato = __rest(req.body, []);
+        const clienteExiste = yield models_1.Usuario.findOne({ ci: dato.ci });
+        if (!clienteExiste) {
+            const cliente = new models_1.Usuario(dato);
+            const clientenuevo = yield cliente.save();
+            res.status(201).json(clientenuevo); //envialo por el cuerpo con axios
+            //lo guardas con una variable y luego lo envías
+        }
         res.status(400).json({
-            message: `Este taller ya exite! ${tallerExiste.NombreTaller}`
+            message: `Ya existe un cliente con esa cedula ${clienteExiste.ci}`
         });
     }
-    const taller = new models_1.Taller(dato);
-    const nuevotaller = yield taller.save();
-    res.json(nuevotaller);
+    catch (error) {
+        res.json(error);
+    }
 });
-exports.crearTaller = crearTaller;
-const verTalleres = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    //hago la consulta y muestro los talleres
-    const talleres = yield models_1.Taller.find().populate('servicios', 'servicio');
-    res.json({
-        Microservicio: "verTalleres",
-        data: talleres
-    });
-});
-exports.verTalleres = verTalleres;
-const editarTaller = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id } = req.params;
-    const dato = __rest(req.body, []);
-    //retorna el json de la cita en la qie esta el usuario.
-    const citaModificada = yield models_1.Taller.findByIdAndUpdate(id, dato, { new: true }).populate('servicios', 'servicio');
-    res.json(citaModificada);
-});
-exports.editarTaller = editarTaller;
-//
+exports.crearCliente = crearCliente;

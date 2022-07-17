@@ -1,8 +1,12 @@
 import { crearCita,elminaCita} from './CitaControllers';
-import { crearTaller,editarTaller } from './TallerControllers';
+import { crearCliente } from './CrearCliente';
+import { crearTaller,editarTaller, verTalleres } from './TallerControllers';
+
 export{
     crearCita,
     crearTaller, 
     elminaCita,
-    editarTaller
+    editarTaller,
+    crearCliente,
+    verTalleres
 }
