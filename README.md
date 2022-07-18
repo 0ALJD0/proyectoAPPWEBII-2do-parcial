@@ -11,4 +11,4 @@ Integrantes:
   2. Brando Rafael Mero Cepeda #VzBrandonZ
   3. Macías Chávez Yandy Eliecer #YandyMC
   4. Márquez Cobeña Julexi Nicole #MarquezJulexi
-  5. Tucker Macías Ronnye Julián #Roonye200
+  5. Tucker Macías Ronnye Julián #Roonye2000
