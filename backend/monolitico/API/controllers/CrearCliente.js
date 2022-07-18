@@ -20,7 +20,7 @@ var __rest = (this && this.__rest) || function (s, e) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.crearCliente = void 0;
+exports.existClient = exports.crearCliente = void 0;
 const models_1 = require("../models");
 const crearCliente = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -41,3 +41,25 @@ const crearCliente = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     }
 });
 exports.crearCliente = crearCliente;
+const existClient = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const data = __rest(req.body, []);
+        const clienteExiste = yield models_1.Usuario.findOne({ ci: data.ci });
+        if (!clienteExiste) {
+            const respuesta = {
+                existe: false,
+                ci: data.ci
+            };
+            res.status(201).json(respuesta); //envialo por el cuerpo con axios
+            //lo guardas con una variable y luego lo envías
+        }
+        res.status(201).json({
+            existe: true,
+            cliente: clienteExiste
+        });
+    }
+    catch (error) {
+        res.json(error);
+    }
+});
+exports.existClient = existClient;

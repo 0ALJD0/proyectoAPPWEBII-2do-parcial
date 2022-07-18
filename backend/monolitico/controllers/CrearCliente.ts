@@ -23,8 +23,27 @@ const crearCliente = async (req: Request ,res: Response )=>{
    
 }
 const existClient = async (req: Request, res: Response)=>{
-    
+    try {
+        const {...data}= req.body;
+        const clienteExiste= await Usuario.findOne({ ci:data.ci });
+        if (!clienteExiste)
+        {
+            const respuesta = {
+                existe : false,
+                ci: data.ci
+            }
+            res.status(201).json(respuesta);//envialo por el cuerpo con axios
+            //lo guardas con una variable y luego lo envías
+        } 
+        res.status(201).json({
+            existe:true,
+            cliente: clienteExiste
+        });
+    } catch (error) {
+        res.json(error);
+    }
 }
 export {
-    crearCliente
+    crearCliente,
+    existClient
 }
