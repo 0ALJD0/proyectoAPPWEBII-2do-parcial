@@ -22,6 +22,9 @@ const crearCliente = async (req: Request ,res: Response )=>{
     }
    
 }
+const existClient = async (req: Request, res: Response)=>{
+    
+}
 export {
     crearCliente
 }
