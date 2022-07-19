@@ -30,10 +30,10 @@ const Vervehiculo = async (req: Request, res: Response)=>{
  }
  
 const Vervehiculos = async (req: Request, res: Response) => {
-    const {...dato}=req.body;
+    const {id}=req.params;
     const [total, vehiculosT] = await Promise.all([
         Vehiculo.countDocuments(),
-        Vehiculo.find({idcliente:dato.idcliente,eliminado:false}),
+        Vehiculo.find({idcliente:id,eliminado:false}),
     ])
     res.status(200).json({
         total:

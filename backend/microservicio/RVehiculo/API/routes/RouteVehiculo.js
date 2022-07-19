@@ -13,7 +13,7 @@ const { validarCampos } = middleware_1.default;
 const router = (0, express_1.Router)();
 exports.router = router;
 router.post('/nvehiculo', (0, express_validator_1.check)('placa', 'Placa obligatoria'), validarCampos, CrearVehiculo);
-router.get('/Mvehiculo', Vervehiculos);
+router.get('/Mvehiculo/:id', Vervehiculos);
 router.get('/Uvehiculo/:id', (0, express_validator_1.check)('id', 'El id no existe').isMongoId(), Vervehiculo);
 router.put('/EVehiculo/:id', (0, express_validator_1.check)('id', 'La placa debe estar en la base de datos').isMongoId(), editarVehiculo);
 router.put('/EliVehiculo/:id', (0, express_validator_1.check)('id', 'La placa debe estar en la base de datos').isMongoId(), EliminarVehiculo);

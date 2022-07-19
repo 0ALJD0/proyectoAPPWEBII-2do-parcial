@@ -11,8 +11,8 @@ async function CreateClient (url:string, data:Cliente){
     return await Maxios.post(url, data)
 }
 
-async function ExistCliente (url:string, data:Existe){
-    return await Maxios.get(url,data)
+async function ExistCliente (url:string, ID:String){
+    return await Maxios.get<Existe>(url+ID)
 
 }
 
@@ -21,8 +21,8 @@ async function CreateVehiculo (url:string, data:Vehiculo){
     return await Maxios.post(url, data)
 }
 
-async function Vervehiculos (url:string, data:Vehiculo){
-    return await Maxios.get<Vehiculo>(url,data)
+async function Vervehiculos (url:string,ID:String){
+    return await Maxios.get<Vehiculo>(url+ID)
 }
 
 async function EditVehicle (url:string, ID:string, data:Vehiculo){
@@ -38,8 +38,8 @@ async function CreateTaller (url:string, data:Talleres){
     return await Maxios.post(url, data)
 }
 
-async function VerTaller (url:string, data: Talleres){
-    return await Maxios.get<Talleres>(url,data)
+async function VerTaller (url:string){
+    return await Maxios.get<Talleres>(url)
 }
 
 async function EditTaller (url:string, ID:string, data:Talleres){
@@ -51,8 +51,8 @@ async function CreateCita (url:string, data:Cita){
     return await Maxios.post(url, data)
 }
 
-async function VerCita (url:string, data: Cita){
-    return await Maxios.get<Cita>(url, data)
+async function VerCita (url:string, ID:String,){
+    return await Maxios.get<Cita>(url+ID)
 }
 
 async function DeleteCita (url:string, ID:string){

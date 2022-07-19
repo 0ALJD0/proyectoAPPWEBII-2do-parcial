@@ -17,7 +17,7 @@ export interface Cliente {
     __v?:      number;
 }
 export interface Existe {
-    ci:String,
+    ci:String;
 }
 
 export interface Cita {

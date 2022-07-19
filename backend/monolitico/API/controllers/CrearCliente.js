@@ -43,12 +43,12 @@ const crearCliente = (req, res) => __awaiter(void 0, void 0, void 0, function* (
 exports.crearCliente = crearCliente;
 const existClient = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const data = __rest(req.body, []);
-        const clienteExiste = yield models_1.Usuario.findOne({ ci: data.ci });
+        const { id } = req.params;
+        const clienteExiste = yield models_1.Usuario.findOne({ ci: id });
         if (!clienteExiste) {
             const respuesta = {
                 existe: false,
-                ci: data.ci
+                ci: id
             };
             res.status(201).json(respuesta); //envialo por el cuerpo con axios
             //lo guardas con una variable y luego lo envías

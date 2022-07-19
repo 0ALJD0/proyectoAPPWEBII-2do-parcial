@@ -8,7 +8,7 @@ import { crearCita, crearCliente, elminaCita, verTalleres, verCitasCliente, exis
 const router = Router();
 router.get('/talleres',verTalleres);
 router.get('/vCita/:id', verCitasCliente);
-router.get('/existe',existClient);
+router.get('/existe/:id',existClient);
 router.put('/dcita/:id',elminaCita);
 router.post('/ncliente', crearCliente);
 router.post('/ncita',crearCita);

@@ -46,10 +46,10 @@ const Vervehiculo = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 });
 exports.Vervehiculo = Vervehiculo;
 const Vervehiculos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const dato = __rest(req.body, []);
+    const { id } = req.params;
     const [total, vehiculosT] = yield Promise.all([
         ModelsVehiculo_1.Vehiculo.countDocuments(),
-        ModelsVehiculo_1.Vehiculo.find({ idcliente: dato.idcliente, eliminado: false }),
+        ModelsVehiculo_1.Vehiculo.find({ idcliente: id, eliminado: false }),
     ]);
     res.status(200).json({
         total: total,
