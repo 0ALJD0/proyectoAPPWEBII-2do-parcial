@@ -3,11 +3,13 @@ import Head from 'next/head'
 import style from '../styles/Home.module.css'
 import {useEffect, useState} from 'react'
 import Link from 'next/link'
-
+const cedula = {
+    ci: String
+}
 
 export default function Personajes({characters}){
 
-  const [characteres, setCharacters] = useState([]);
+  
 
   return (
     <div >
