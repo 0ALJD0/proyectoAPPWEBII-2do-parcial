@@ -16,8 +16,9 @@
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossOrigin="anonymous" />
             </Head>
             <main>
-                <div className='container-fluid'>
-                    <div className='row'>
+                <section className='h-100 h-custom'></section>
+                <div className='container py-5 h-100'>
+                    <div className='row d-flex justify-content-center align-items-center h-100'>
                         <form action="">
                             <div className='col-md-5'>
                                 <label htmlFor="">Placa </label>
@@ -36,6 +37,7 @@
                                 <label htmlFor="">Modelo</label>
                                 <input className='form-control' type="text" name="modelo" id="modelo" />
                             </div>
+                            <br />
                             <button className='btn btn-primary'>Crear vehiculo</button>
                         </form>
                     </div>
