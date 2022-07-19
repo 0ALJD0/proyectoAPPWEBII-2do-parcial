@@ -1,5 +1,5 @@
 import axios from "axios"
-import {Vehiculo,Talleres,Cita,Cliente} from "../interfaces/InterfacesT"
+import {Vehiculo,Talleres,Cita,Cliente, Existe} from "../interfaces/InterfacesT"
 
 const Maxios= axios.create({
     baseURL:`localhost:8080/`
@@ -10,8 +10,9 @@ const Maxios= axios.create({
 async function CreateClient (url:string, data:Cliente){
     return await Maxios.post(url, data)
 }
-async function ExistCliente (url:string, data:Cliente){
-    return await Maxios.get<Vehiculo>(url,data)
+async function ExistCliente (url:string, data:Existe){
+    return await Maxios.get(url,data)
+
 }
 
 //vehiculo
@@ -63,4 +64,10 @@ function erroraxios (error:Error){
         console.log("Se ha producido un error en el axios");
     }
     console.log(error)        
+}
+export {
+    erroraxios, CreateCita, DeleteCita, VerTaller,VerCita, EditTaller,
+    CreateTaller, DeleteVehicle, EditVehicle, CreateClient, ExistCliente,
+    CreateVehiculo, Vervehiculos,
+    
 }
