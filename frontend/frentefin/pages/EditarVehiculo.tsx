@@ -11,7 +11,7 @@
     import type { NextPage } from 'next'
     import Head from 'next/head'
 
-    const Cvehiculo: NextPage = () =>{
+    const Evehiculo: NextPage = () =>{
         return(<>
             <Head> 
                 <title>Editar Vehiculo</title>
@@ -23,11 +23,25 @@
                         <div className='card-body p-4 p-md-4'>
                             <p className='h2'>Editar vehiculo</p>
                             <form action="" className='form-horizontal'>
-                                <div className='row mt-5'></div>
-                                <div className='row mt-5'></div>
-                                <div className='row mt-5'></div>
-                                <div className='row mt-5'></div>
-                                <div className='row mt-5'></div>
+                                <div className='row mt-5'>
+                                    <label htmlFor="">PLaca</label>
+                                    <input type="hidden" id='id' name='id'/>
+                                    <input type="hidden" id='idcliente' name='idcliente'/>
+                                    <input className='form-control' type="text" id='place' name='place' />
+                                </div>
+                                <div className='row mt-5'>
+                                    <label htmlFor=""> Marca</label>
+                                    <input className='form-control' type="text" />
+                                </div>
+                                <div className='row mt-5'>
+                                    <label htmlFor="">Color</label>
+                                    <input className='form-control' type="text" />
+                                </div>
+                                <div className='row mt-5'>
+                                    <label htmlFor="">Modelo</label>
+                                    <input className='form-control' type="text" />
+                                </div>
+                                <button type='submit' className='alert-primary btn btn-lg btn-secondary fw-bold border-white bg-indigo m-2'>Editar</button>
                             </form>
                         </div>
                     </div>
@@ -35,3 +49,5 @@
             </section>
         </>)
     }
+
+    export default Evehiculo
