@@ -1,5 +1,5 @@
 import { crearCita,elminaCita, verCitasCliente, verCitasRepre} from './CitaControllers';
-import { crearCliente } from './CrearCliente';
+import { crearCliente, existClient} from './CrearCliente';
 import { crearTaller,editarTaller, verTalleres } from './TallerControllers';
 
 export{
@@ -10,5 +10,6 @@ export{
     elminaCita,
     editarTaller,
     crearCliente,
-    verTalleres
+    verTalleres,
+    existClient
 }
