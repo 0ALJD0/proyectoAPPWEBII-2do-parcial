@@ -10,6 +10,7 @@ const Maxios= axios.create({
 async function CreateClient (url:string, data:Cliente){
     return await Maxios.post(url, data)
 }
+
 async function ExistCliente (url:string, data:Existe){
     return await Maxios.get(url,data)
 
