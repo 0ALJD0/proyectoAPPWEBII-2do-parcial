@@ -14,20 +14,29 @@ const RCliente: NextPage = () => {
         </Head>
         <main>
         <h1>Ingrese sus datos</h1>
-        <form action="">
-            <div className='.container-ms'>
-            </div>
-            <div>  </div>
-            <label className='form-label' htmlFor="first">Nombre:</label>
+        <div className='@media (min-width: @screen-sm-min)'>
+            <div className='row'>
+            <form action="">
+            <div className='mb-3'>
+                <label className='formfile' htmlFor="first">Nombre:</label>
                 <input className='form-control' type="text" id="nombre" name="nombre" />
-                <label className='form-label' htmlFor="last">Correo:</label>
-                <input className='form-control' type="text" id="correo" name="correo" />
-                <label className='form-label' htmlFor="">Cedula</label>
-                <input className='form-control' type="text" id="cedula" name="cedula" />
-                <label className='form-label' htmlFor="">Numero Telefonico</label>
-                <input className='form-control' type="text" id="numero" name="numero" />
+            </div>
+            <div className='mb-3'>
+                <label className='formfile' htmlFor="last">Correo:</label>
+                <input className='form-control' type="text" id="correo" name="correo" />    
+            </div>
+            <div className='mb-3'>
+                <label className='formfile' htmlFor="">Cedula</label>
+                <input className='form-control' type="text" id="cedula" name="cedula" />    
+            </div>
+            <div className='mb-3'>
+                <label className='formfile' htmlFor="">Numero Telefonico</label>
+                <input className='form-control' type="text" id="numero" name="numero" />    
+            </div>
                 <button className='btn btn-primary' type="submit">Enviar</button>
         </form>
+            </div>
+        </div>
         </main>
         </>
     )
