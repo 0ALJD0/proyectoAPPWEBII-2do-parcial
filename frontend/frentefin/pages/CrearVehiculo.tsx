@@ -35,6 +35,7 @@
                                 <label htmlFor="">Modelo</label>
                                 <input className='form-control' type="text" name="modelo" id="modelo" />
                             </div>
+                            <button className='btn btn-primary'>Crear vehiculo</button>
                         </form>
                     </div>
                 </div>
