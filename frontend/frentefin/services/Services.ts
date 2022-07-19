@@ -11,7 +11,7 @@ async function CreateClient (url:string, data:Cliente){
     return await Maxios.post(url, data)
 }
 async function ExistCliente (url:string, data:Cliente){
-    return await Maxios.get<Vehiculo>(url,data)
+    return await Maxios.get<Cliente>(url,data)
 }
 
 //vehiculo
