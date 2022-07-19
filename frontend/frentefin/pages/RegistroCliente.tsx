@@ -15,8 +15,10 @@ const RCliente: NextPage = () => {
         <main>
         <h1>Ingrese sus datos</h1>
         <form action="">
-            <div className='row g-3 align-items-center'>
-                <label className='form-label' htmlFor="first">Nombre:</label>
+            <div className='.container-ms'>
+            </div>
+            <div>  </div>
+            <label className='form-label' htmlFor="first">Nombre:</label>
                 <input className='form-control' type="text" id="nombre" name="nombre" />
                 <label className='form-label' htmlFor="last">Correo:</label>
                 <input className='form-control' type="text" id="correo" name="correo" />
@@ -25,7 +27,6 @@ const RCliente: NextPage = () => {
                 <label className='form-label' htmlFor="">Numero Telefonico</label>
                 <input className='form-control' type="text" id="numero" name="numero" />
                 <button className='btn btn-primary' type="submit">Enviar</button>
-            </div>
         </form>
         </main>
         </>
