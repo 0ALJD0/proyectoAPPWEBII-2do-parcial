@@ -16,7 +16,9 @@ export interface Cliente {
     telefono: string;
     __v?:      number;
 }
-
+export interface Existe {
+    ci:String,
+}
 
 export interface Cita {
     _id?:           string;

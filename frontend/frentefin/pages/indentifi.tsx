@@ -3,13 +3,28 @@ import Head from 'next/head'
 import style from '../styles/Home.module.css'
 import {useEffect, useState} from 'react'
 import Link from 'next/link'
+import { ExistCliente } from '../services/Services'
+import { Cliente } from '../interfaces/InterfacesT'
 const cedula = {
     ci: String
 }
+interface respuesta  {
+    existe: Boolean
+    ciente?: Object
+    ci?:String
+}
+export default function Personajes(){
 
-export default function Personajes({characters}){
-
-  
+    async function getServerSideProps(req: Request)  {
+        const res = ExistCliente<respuesta>('clientf/existe/',{
+            ci: req.body.ci
+        });
+        const data = await res.json()
+    
+        return {
+          props: {characters: data.results}, // will be passed to the page component as props
+        }
+    }
 
   return (
     <div >
@@ -36,18 +51,10 @@ export default function Personajes({characters}){
             </form>
         </div>
       <Link href='/' >
-          <a  onClick={regresar} className={style.back}>Atrás</a>
+          <a   className={style.back}>Atrás</a>
       </Link> 
       </main>
     </div>
       )
 }
 
-export async function getServerSideProps() {
-    const res = await fetch(`https://rickandmortyapi.com/api/character`)
-    const data = await res.json()
-
-    return {
-      props: {characters: data.results}, // will be passed to the page component as props
-    }
-}
