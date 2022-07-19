@@ -24,6 +24,10 @@ async function CreateVehiculo (url:string, data:Vehiculo){
 async function Vervehiculos (url:string,ID:String){
     return await Maxios.get<Vehiculo>(url+ID)
 }
+async function Vervehiulo (url:string, ID:String){
+    return await Maxios.get<Vehiculo>(url+ID)
+
+}
 
 async function EditVehicle (url:string, ID:string, data:Vehiculo){
     return await Maxios.put<Vehiculo>(url+ID,data)
