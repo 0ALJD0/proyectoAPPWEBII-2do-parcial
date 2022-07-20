@@ -2,8 +2,72 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import { VerTaller } from '../services/Services';
 
+const Taller = [
+    { "_id" : "62d39b9564fed552ba9ef5a1", 
+    "NombreTaller" : "Mecanica Aqua", 
+    "direccion" : "Costa Azul", 
+    "telefonoTaller" : "NA", 
+    "representante" : "Mirando Flores", 
+    "servicios" : [ "Limpieza a", "Limpieza b", "limpieza c" ], 
+    "__v" : 0 }, 
+    { "_id" : "62d39c4b64fed552ba9ef5a5", 
+    "NombreTaller" : "Mecanica Darkness", 
+    "direccion" : "Noshe", 
+    "telefonoTaller" : "NA", 
+    "representante" : "Darkness Nomeacuerdo",
+    "servicios" : [ "Limpieza masoquismo", "Limpieza masoquista", 
+    "Adora que la maltraten" ], 
+    "__v" : 0}    
+];
 
 
+const Cita = [
+    { "_id" : "62d3c05dc842d691a6abe6f7", 
+    "idcliente" : "62d39db264fed552ba9ef5a9", 
+    "idtaller" : "62d39c4b64fed552ba9ef5a5", 
+    "vehiculo" : { "_id" : "62d3b374410fb07e5c01d3bf", 
+                    "idcliente" : "62d39b9564fed552ba9ef5a1", 
+                    "placa" : "SADSADSADSA", 
+                    "Marca" : "Hola", 
+                    "Color" : "Agua", 
+                    "Modelo" : "2022", 
+                    "eliminado" : false, 
+                    "__v" : 0 }, 
+    "trabajo" : [ "ola", "que", "hace" ], 
+    "estado" : false, 
+    "eliminado" : false, 
+    "fechaCreacion" : "2022-07-17T07:55:09.692Z", 
+    "__v" : 0 },
+{ "_id" : "62d3c0ce3ef6426a4d26ffd7", 
+"idcliente" : "62d39db264fed552ba9ef5a9", 
+"idtaller" : "62d39c4b64fed552ba9ef5a5", 
+"vehiculo" : { "_id" : "62d3b374410fb07e5c01d3bf", 
+                "idcliente" : "62d39b9564fed552ba9ef5a1", 
+                "placa" : "SADSADSADSA", 
+                "Marca" : "Hola",
+                "Color" : "Agua", 
+                "Modelo" : "2022", 
+                "eliminado" : false, 
+                "__v" : 0 }, 
+"trabajo" : [ "ola", "que", "hace" ], 
+"estado" : false, 
+"eliminado" : false, 
+"fechaCreacion" : "2022-07-17T07:57:02.905Z", 
+"__v" : 0 }
+];
+
+const Vehiculo = [
+    {
+        "_id": "62d3b374410fb07e5c01d3bf",
+        "idcliente": "62d39b9564fed552ba9ef5a1",
+        "placa": "SISI",
+        "Marca": "ADA",
+        "Color": "WA",
+        "Modelo": "2ASDSA022",
+        "eliminado": false,
+        "__v": 0
+    }
+];
 
 const TresComponentes: NextPage = () =>{
     return(
@@ -21,7 +85,7 @@ const TresComponentes: NextPage = () =>{
                         ):(
                             Taller?.map((taller) => {
                                 return ( 
-                                    <div key={taller.id} className= "">
+                                    <div key={taller._id} className= "">
                                         <h2>{taller.NombreTaller}</h2>
                                         <p>{taller.direccion}</p>
                                         <p>{taller.telefonoTaller}</p>
@@ -37,8 +101,8 @@ const TresComponentes: NextPage = () =>{
                         ):(
                             Cita?.map((cita) => {
                                 return ( 
-                                    <div key={cita.id} className= "">
-                                        <h2>{cita.vehiculo}</h2>
+                                    <div key={cita._id} className= "">
+                                        <h2>{cita.vehiculo.Marca}</h2>
                                         <p>{cita.trabajo}</p>
                                         <p>{cita.fechaCreacion}</p>
                                     </div>)
@@ -50,7 +114,7 @@ const TresComponentes: NextPage = () =>{
                             <div className= "">Cargando...</div>
                         ):(
                             Vehiculo?.map((vehiculo) => {
-                                return ( <div key={vehiculo.id} className= "">
+                                return ( <div key={vehiculo._id} className= "">
                                         <h2>{vehiculo.placa}</h2>
                                         <p>{vehiculo.Marca}</p>
                                         <p>{vehiculo.Color}</p>
