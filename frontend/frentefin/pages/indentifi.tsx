@@ -34,16 +34,16 @@ export default function Identifi(){
                 console.log( res )
                 if (res.existe===false) {
                   setTimeout(async ()=>{
-                    Swal.fire('Usted no está reistrado!') 
+                    Swal.fire('Usted no está registrado!') 
                   }
-                  ,3000);
+                  ,1000);
                   
                   router.push( '/RegistroCliente/');
                 } else {
                   setTimeout(async ()=>{
                     Swal.fire('Usted está registrado!') 
                   }
-                  ,3000);
+                  ,1000);
                   router.push('/TresComponentes');
                 }
                 
