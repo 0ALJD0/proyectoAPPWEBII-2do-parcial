@@ -53,7 +53,7 @@ export interface Vehiculo {
 export interface respuesta  {
     
             existe: boolean;
-            ciente?: object;
+            cliente?: object;
             ci?:string;
         
     
