@@ -16,9 +16,7 @@ export interface Cliente {
     telefono: string;
     __v?:      number;
 }
-export interface Existe {
-    ci:String;
-}
+
 
 export interface Cita {
     _id?:           string;
@@ -51,4 +49,12 @@ export interface Vehiculo {
     Modelo:    string;
     eliminado?: boolean;
     v?:         number;
+}
+export interface respuesta  {
+    
+            existe: boolean;
+            ciente?: object;
+            ci?:string;
+        
+    
 }

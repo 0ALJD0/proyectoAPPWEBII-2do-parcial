@@ -1,5 +1,5 @@
 import axios from "axios"
-import {Vehiculo,Talleres,Cita,Cliente, Existe} from "../interfaces/InterfacesT"
+import {Vehiculo,Talleres,Cita,Cliente, respuesta} from "../interfaces/InterfacesT"
 
 const Maxios= axios.create({
     baseURL:`localhost:8080/`
@@ -12,7 +12,11 @@ async function CreateClient (url:string, data:Cliente){
 }
 
 async function ExistCliente (url:string, ID:String){
-    return await Maxios.get<Existe>(url+ID)
+    return await Maxios.get<respuesta>(url+ID, {
+        headers: {
+          Accept: 'application/json',
+        },
+      },)
 
 }
 

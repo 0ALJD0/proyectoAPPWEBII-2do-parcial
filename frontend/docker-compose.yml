@@ -3,8 +3,6 @@ services:
  ##Asignando las configuraciones para cada uno de los microservicios y el monolitico
   frentefin:
     build: ./frentefin
-    depends_on:
-      - mongo
     environment:
       - PORT=3000
     ports:
