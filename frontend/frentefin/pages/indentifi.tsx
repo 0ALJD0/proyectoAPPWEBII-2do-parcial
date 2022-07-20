@@ -1,41 +1,59 @@
 //Esta hecho en SSR
 import Head from 'next/head'
 import style from '../styles/Home.module.css'
-import {ChangeEvent, FormEvent, useEffect, useState} from 'react'
+import {ChangeEvent, FormEvent, useState} from 'react'
 import Link from 'next/link'
 import { ExistCliente } from '../services/Services'
-import { NextApiHandler } from 'next'
+import Swal from 'sweetalert2'
 import { respuesta } from '../interfaces/InterfacesT'
+import { AxiosError } from 'axios'
+import { useRouter } from 'next/router'
 
 
 
-export default function Personajes(){
-  const useFormVehiculo = () => {
-    const id = JSON.parse( localStorage.getItem( 'user' ) || '{}' )
-    const [vehiculo, setVehiculo] = useState( {
-        placaVehiculo    : '',
-        marcaVehiculo    : '',
-        modeloVehiculo   : '',
-        tipoVehiculo     : '',
-        matriculaVehiculo: '',
-        seguroVehiculo   : '',
-        valorAlquilerDia : 0,
-        usuario_ID       : '',
-    } )
 
+
+export default function Identifi(){
+    const router = useRouter()
+    const [recurso, setrecurso]= useState<respuesta>({
+      ci : '',
+      existe: true || false ,
+      cliente: {}
+    })
     const handleChange = ( e: ChangeEvent<HTMLInputElement> ) => {
-        setVehiculo( {
-            ...vehiculo,
+        setrecurso( {
+            ...recurso,
             [e.target.name]: e.target.value,
         } )
     }
+    const handleSubmit = ( e: FormEvent<HTMLFormElement> ) => {
+      e.preventDefault()
+      const { ci } = recurso
+       ExistCliente( ci )
+            .then( ( res ) => {
+                console.log( res )
+                if (res.existe===false) {
+                  setTimeout(async ()=>{
+                    Swal.fire('Usted no está reistrado!') 
+                  }
+                  ,3000);
+                  
+                  router.push( '/RegistroCliente/');
+                } else {
+                  setTimeout(async ()=>{
+                    Swal.fire('Usted está registrado!') 
+                  }
+                  ,3000);
+                  router.push('/TresComponentes');
+                }
+                
+                
+            } )
+            .catch( ( error: AxiosError) => {
+                console.log( error)
+            } )
+  }
 
-    return {
-        vehiculo,
-        handleChange,
-        id,
-    }
-}
     
   return (
     <div >
@@ -51,11 +69,11 @@ export default function Personajes(){
           Identifiquese con su cédula
         </h1>
         <div className="container">
-            <form onSubmit={getServerSideProps} method="post">
+            <form onSubmit={handleSubmit} method="post">
             
               <div className="form-group">
                   <label htmlFor="nombre">Cedúla</label>
-                  <input type="text" className="form-control" id="ci" name="ci"  />
+                  <input onChange={handleChange} className="form-control" type="text"  id="ci" name="ci"  />
               </div>
               
               <button type="submit" className="btn btn-primary">Comprobar</button>
@@ -70,12 +88,3 @@ export default function Personajes(){
       )
 }
 
-export async function getServerSideProps() {
-  const data:String=cedula;
-  const res = await ExistCliente('clientf/existe/', data)
-  const dato = await res
-
-  return {
-    props: {characters: data.results}, // will be passed to the page component as props
-  }
-}

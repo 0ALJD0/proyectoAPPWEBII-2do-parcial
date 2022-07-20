@@ -2,7 +2,7 @@ import axios from "axios"
 import {Vehiculo,Talleres,Cita,Cliente, respuesta} from "../interfaces/InterfacesT"
 
 const Maxios= axios.create({
-    baseURL:`localhost:8080/`
+    baseURL:`http://localhost:8080/`
 })
 
 
@@ -11,12 +11,9 @@ async function CreateClient (url:string, data:Cliente){
     return await Maxios.post(url, data)
 }
 
-async function ExistCliente (url:string, ID:String){
-    return await Maxios.get<respuesta>(url+ID, {
-        headers: {
-          Accept: 'application/json',
-        },
-      },)
+async function ExistCliente ( ID:String|undefined){
+    return await Maxios.get(`clientf/existe/${ID}`)
+    .then(({data})=>{return data})
 
 }
 
