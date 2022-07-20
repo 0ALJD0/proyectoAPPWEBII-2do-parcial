@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import Link from 'next/link'
 import { VerTaller } from '../services/Services';
 
 const Taller = [
@@ -77,53 +78,73 @@ const TresComponentes: NextPage = () =>{
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossOrigin="anonymous" />
         </Head>
         <section>
-            <div className='container'>
-                <div className='row'>
-                    <div>
+            <div className='container justify-content-center'>
+                <div className='row justify-content-center'>
+                    <div className='col-md-4'>
+                    <h1 className='justify-content-center'>TALLERES</h1>
                         {Taller.map.length === 0? (
                             <div className= "">Cargando...</div>
                         ):(
                             Taller?.map((taller) => {
                                 return ( 
-                                    <div key={taller._id} className= "">
-                                        <h2>{taller.NombreTaller}</h2>
-                                        <p>{taller.direccion}</p>
-                                        <p>{taller.telefonoTaller}</p>
-                                        <p>{taller.representante}</p>
-                                        <p>{taller.servicios}</p>
-                                    </div>)
+                                    <div className = "">
+                                        <ul key={taller._id} className= "list-group p-100 w-150">
+                                            <div className= "list-group-item">
+                                                <h2>Nombre: {taller.NombreTaller}</h2>
+                                                <p>Direccion: {taller.direccion}</p>
+                                                <p>Telefono: {taller.telefonoTaller}</p>
+                                                <p>Representante: {taller.representante}</p>
+                                                <p>Servicios: {taller.servicios[0]}</p>
+                                            </div>
+                                        </ul>
+                                    </div>
+                                    )
                             })
                         )}
                     </div>
-                    <div>
+
+                    <div className='col-md-4'>
+                    <h1 className='justify-content-center'>Cita</h1>
                         {Cita.map.length === 0? (
                             <div className= "">Cargando...</div>
                         ):(
                             Cita?.map((cita) => {
                                 return ( 
-                                    <div key={cita._id} className= "">
-                                        <h2>{cita.vehiculo.Marca}</h2>
-                                        <p>{cita.trabajo}</p>
-                                        <p>{cita.fechaCreacion}</p>
-                                    </div>)
+                                    <div>
+                                        <ul key={cita._id} className= "list-group p-100 w-150">
+                                            <div className="list-group-item">
+                                                <h2>{cita.vehiculo.Marca}</h2>
+                                                <p>{cita.trabajo}</p>
+                                                <p>{cita.fechaCreacion}</p>
+                                            </div>
+                                        </ul>
+                                    </div>
+                                    )
                             })
                         )}
                     </div>
-                    <div>
+                    <div className = "col-md-4">
+                    <h1 className='justify-content-center'>Vehiculo</h1>
                         {Vehiculo.map.length === 0? (
                             <div className= "">Cargando...</div>
                         ):(
                             Vehiculo?.map((vehiculo) => {
-                                return ( <div key={vehiculo._id} className= "">
-                                        <h2>{vehiculo.placa}</h2>
-                                        <p>{vehiculo.Marca}</p>
-                                        <p>{vehiculo.Color}</p>
-                                        <p>{vehiculo.Modelo}</p>
-                                </div>)
+                                return ( 
+                                <ul key={vehiculo._id} className= "list-group p-100 w-150">
+                                        <div className="list-group-item">
+                                            <h2>{vehiculo.placa}</h2>
+                                            <p>{vehiculo.Marca}</p>
+                                            <p>{vehiculo.Color}</p>
+                                            <p>{vehiculo.Modelo}</p>
+                                        </div>
+                                </ul>)
                             })
                         )}
                     </div>
                 </div>
+                <Link href='/' className='justify-content-center'>
+                    <a   className="btn btn-primary">Salir</a>
+                </Link>
             </div> 
         </section>
         </div>
@@ -132,67 +153,3 @@ const TresComponentes: NextPage = () =>{
 
 
 export default TresComponentes;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-     {{#each taller}}
-            con los daatos del taller, el nombre, servicios
-            }y un boton para crer una cita 
-            <tr>
-                <td>{{this.nombre}}</td>
-                <td>{{this.precio}}</td>
-                <td>{{this.costo}}</td>
-                <td> <a href="/producto/modificar/{{this._id}}">Modificar</a>  </td>
-                <td> <a href="/producto/eliminar/{{this._id}}">Elliminar</a> </td>
-            </tr>
-
-*/
-/*
-     {{#each citasdelcliente}}
-            con los daatos del nombretaller, el nvehiculo, servicios
-            y boton para eliminar cita
-            <tr>
-                <td>{{this.nombre}}</td>
-                <td>{{this.precio}}</td>
-                <td>{{this.costo}}</td>
-                <td> <a href="/producto/modificar/{{this._id}}">Modificar</a>  </td>
-                <td> <a href="/producto/eliminar/{{this._id}}">Elliminar</a> </td>
-            </tr>
-
-*/
-/*
-     <div>
-        <div>
-            {#each vehiculo}}
-            con los daatos del modelo, matricula
-            }y un boton para modificar, eliminar.
-            <tr>
-                <td>{{this.nombre}}</td>
-                <td>{{this.precio}}</td>
-                <td>{{this.costo}}</td>
-                <td> <a href="/producto/modificar/{{this._id}}">Modificar</a>  </td>
-                <td> <a href="/producto/eliminar/{{this._id}}">Elliminar</a> </td>
-            </tr>
-        </div>
-        boton aañadir vehiculo
-     </div>
-
-*/
